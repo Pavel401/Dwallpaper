@@ -6,19 +6,24 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/SearchPage.dart';
 import 'package:wallpix/UI/SetWallpaper.dart';
 import 'package:wallpix/Utility/Constants.dart';
 import 'package:wallpix/controllers/carosoleController.dart';
 import 'package:sizer/sizer.dart';
 
+import '../controllers/Appodeal.dart';
+
 class HomePage extends GetView<Controllers> {
   HomePage({super.key});
+  AppodealAds appodealAds = Get.put(AppodealAds());
 
   @override
   Widget build(BuildContext context) {
     print("widget initialized");
     Get.lazyPut(() => Controllers());
+
     return Scaffold(
         extendBody: true,
         appBar: _buildAppbar(),
@@ -121,6 +126,14 @@ class HomePage extends GetView<Controllers> {
                   } else {
                     return InkWell(
                       onTap: () async {
+                        var isInitialized =
+                            await Appodeal.show(Appodeal.INTERSTITIAL);
+
+                        if (isInitialized) {
+                          Appodeal.show(Appodeal.INTERSTITIAL, "waterfall");
+                        } else {
+                          print("not initialized");
+                        }
                         Get.to(
                           () => ImageView(
                             id: controller.wallpaperList[index]['id'],
@@ -304,7 +317,7 @@ AppBar _buildAppbar() {
     ),
     actions: [
       InkWell(
-        onTap: () {
+        onTap: () async {
           Get.to(SearchPage());
         },
         child: HeroIcon(

@@ -7,6 +7,7 @@ import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
+import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/Homepage.dart';
 import 'package:wallpix/Utility/Constants.dart';
 import '../controllers/ProgressIndicator.dart';
@@ -41,10 +42,11 @@ class ImageView extends StatelessWidget {
       var status = await Permission.photos.status;
       if (status.isGranted) {
         c.save(this.large2x, this.id);
-        print("Permission is granted");
+        // print("Permission is granted");
       } else if (status.isDenied) {
         if (await Permission.photos.request().isGranted) {
           c.save(this.large2x, this.id);
+
           // Either the permission was already granted before or the user just granted it.
           print("Permission was granted");
         }
@@ -238,7 +240,9 @@ class ImageView extends StatelessWidget {
                   width: 2.w,
                 ),
                 GestureDetector(
-                  onTap: _askPermission,
+                  onTap: () async {
+                    _askPermission();
+                  },
                   child: Container(
                     height: 8.h,
                     width: 25.w,

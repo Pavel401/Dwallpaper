@@ -1,18 +1,55 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/CategorisPage.dart';
 import 'package:wallpix/UI/Homepage.dart';
 import 'package:wallpix/UI/ProfilePage.dart';
+import 'package:wallpix/Utility/API.dart';
 import 'package:wallpix/Utility/Constants.dart';
 import 'package:wallpix/controllers/LandingPageController.dart';
 import 'package:wallpix/controllers/carosoleController.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Set ad auto caching enabled or disabled
+// By default autocache is enabled for all ad types
+  initialization();
   runApp(MyAppView());
+}
+
+Future<void> initialization() async {
+  Appodeal.initialize(
+      appKey: APImanager.appodeal_key,
+      adTypes: [
+        AppodealAdType.RewardedVideo,
+        AppodealAdType.Interstitial,
+      ],
+      onInitializationFinished: (errors) {
+        errors?.forEach((error) => print(error.desctiption));
+        print("onInitializationFinished: errors - ${errors?.length ?? 0}");
+      });
+  Appodeal.setTesting(kReleaseMode ? false : true); //only not release mode
+  Appodeal.setLogLevel(Appodeal.LogLevelVerbose);
+
+  Appodeal.setAutoCache(Appodeal.INTERSTITIAL, true);
+  Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, true);
+  Appodeal.setUseSafeArea(true);
+  void interstitial() {
+    Appodeal.setInterstitialCallbacks(
+        onInterstitialLoaded: (isPrecache) =>
+            print('onInterstitialLoaded: isPrecache - $isPrecache'),
+        onInterstitialFailedToLoad: () => print('onInterstitialFailedToLoad'),
+        onInterstitialShown: () => print('onInterstitialShown'),
+        onInterstitialShowFailed: () => print('onInterstitialShowFailed'),
+        onInterstitialClicked: () => print('onInterstitialClicked'),
+        onInterstitialClosed: () => print('onInterstitialClosed'),
+        onInterstitialExpired: () => print('onInterstitialExpired'));
+  }
 }
 
 class MyAppView extends GetView<Controllers> {

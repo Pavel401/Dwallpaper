@@ -559,6 +559,8 @@
             <key>NSAllowsArbitraryLoads</key>
             <true/>
         </dict>
+        <key>GADApplicationIdentifier</key> 
+        <string>ca-app-pub-2839905781866300~8307846490</string>
         <key>NSUserTrackingUsageDescription</key>
         <string>Appodeal Flutter Demo needs your advertising identifier to provide personalised advertising experience tailored to you</string>
         <key>NSLocationWhenInUseUsageDescription</key>
@@ -580,5 +582,10 @@
         <string>CLIENT-TOKEN</string>
         <key>FacebookDisplayName</key>
         <string>APP-NAME</string>
+        <!-- Permission options for the `photos` group -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>photos</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
     </dict>
 </plist>
