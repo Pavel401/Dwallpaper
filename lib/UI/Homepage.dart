@@ -130,7 +130,7 @@ class HomePage extends GetView<Controllers> {
                             await Appodeal.show(Appodeal.INTERSTITIAL);
 
                         if (isInitialized) {
-                          Appodeal.show(Appodeal.INTERSTITIAL, "waterfall");
+                          Appodeal.show(Appodeal.INTERSTITIAL);
                         } else {
                           print("not initialized");
                         }

@@ -242,6 +242,14 @@ class ImageView extends StatelessWidget {
                 GestureDetector(
                   onTap: () async {
                     _askPermission();
+                    var isInitialized =
+                        await Appodeal.show(Appodeal.INTERSTITIAL);
+
+                    if (isInitialized) {
+                      Appodeal.show(Appodeal.INTERSTITIAL);
+                    } else {
+                      print("not initialized");
+                    }
                   },
                   child: Container(
                     height: 8.h,
