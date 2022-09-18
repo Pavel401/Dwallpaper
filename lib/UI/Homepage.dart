@@ -291,7 +291,15 @@ class WallpaperCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        var isInitialized = await Appodeal.show(Appodeal.INTERSTITIAL);
+
+        if (isInitialized) {
+          Appodeal.show(Appodeal.INTERSTITIAL);
+        } else {
+          print("not initialized");
+        }
+
         Get.to(
           () => ImageView(
             id: controller.carosoleItems[i]['id'],

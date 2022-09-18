@@ -243,10 +243,10 @@ class ImageView extends StatelessWidget {
                   onTap: () async {
                     _askPermission();
                     var isInitialized =
-                        await Appodeal.show(Appodeal.INTERSTITIAL);
+                        await Appodeal.show(Appodeal.REWARDED_VIDEO);
 
                     if (isInitialized) {
-                      Appodeal.show(Appodeal.INTERSTITIAL);
+                      Appodeal.show(Appodeal.REWARDED_VIDEO);
                     } else {
                       print("not initialized");
                     }

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
+import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/CategorisView.dart';
 import 'package:wallpix/UI/SearchPage.dart';
 import 'package:wallpix/Utility/Constants.dart';
@@ -45,7 +46,14 @@ class Categoris extends GetView<CategorisWallpaperController> {
           itemCount: title.length,
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: () {
+              onTap: () async {
+                var isInitialized = await Appodeal.show(Appodeal.INTERSTITIAL);
+
+                if (isInitialized) {
+                  Appodeal.show(Appodeal.INTERSTITIAL);
+                } else {
+                  print("not initialized");
+                }
                 controller.CategoryQuery.value = title[index].toString();
                 controller.getwalls(title[index].toString());
                 Get.to(() => CategoryView(
@@ -119,11 +127,16 @@ class Categoris extends GetView<CategorisWallpaperController> {
             fontWeight: FontWeight.w600),
       ),
       actions: [
-        HeroIcon(
-          HeroIcons.bell,
-          solid: true, // Outlined icons are used by default.
-          color: theme.neoncolor,
-          size: 20.sp,
+        InkWell(
+          onTap: () async {
+            Get.to(SearchPage());
+          },
+          child: HeroIcon(
+            HeroIcons.searchCircle,
+            solid: true, // Outlined icons are used by default.
+            color: theme.neoncolor,
+            size: 22.sp,
+          ),
         ),
         SizedBox(
           width: 4.w,

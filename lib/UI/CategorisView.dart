@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:wallpix/UI/SetWallpaper.dart';
@@ -45,11 +47,40 @@ class CategoryView extends GetView<CategorisWallpaperController> {
     return Obx(
       () {
         if (controller.isWallpaperLoading.value) {
-          return Center(
-              child: Container(
-            height: 20.0.h,
-            width: 80.w,
-          ));
+          return Padding(
+            padding: EdgeInsets.only(
+              left: 4.w,
+              right: 4.w,
+            ),
+            child: AlignedGridView.count(
+              addAutomaticKeepAlives: false,
+              physics: const PageScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              primary: false,
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 12,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Container(
+                    height: 30.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Shimmer.fromColors(
+                      baseColor: HexColor("#C9F560"),
+                      highlightColor: HexColor("#C9F560").withOpacity(0.5),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                      ),
+                    ));
+              },
+            ),
+          );
         } else if (controller.isWallpaperDataError.value) {
           return const Center(
             child: Text('Error'),
