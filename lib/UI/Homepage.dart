@@ -11,23 +11,68 @@ import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/SearchPage.dart';
 import 'package:wallpix/UI/SetWallpaper.dart';
 import 'package:wallpix/Utility/Constants.dart';
+import 'package:wallpix/controllers/DrawerController.dart';
 import 'package:wallpix/controllers/carosoleController.dart';
 import 'package:sizer/sizer.dart';
 
 import '../controllers/Appodeal.dart';
+import '../controllers/DrawerController.dart';
+import '../controllers/DrawerController.dart';
 
 class HomePage extends GetView<Controllers> {
   HomePage({super.key});
   AppodealAds appodealAds = Get.put(AppodealAds());
+  SidebarController drawerController = Get.put(SidebarController());
 
   @override
   Widget build(BuildContext context) {
     print("widget initialized");
     Get.lazyPut(() => Controllers());
-
     return Scaffold(
+        key: drawerController.scaffoldKey,
         extendBody: true,
-        appBar: _buildAppbar(),
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: InkWell(
+            onTap: () {
+              drawerController.openDrawer();
+            },
+            child: Container(
+                margin: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: theme.secondaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Image.asset("assets/icons/hamburger.png")),
+          ),
+          title: Text(
+            "Wallpix",
+            style: GoogleFonts.nunito(
+                //   color: Color.fromRGBO(65, 84, 252, 0.44),
+                fontSize: 26,
+                letterSpacing: 1,
+                fontWeight: FontWeight.w600),
+          ),
+          actions: [
+            InkWell(
+              onTap: () async {
+                Get.to(SearchPage());
+              },
+              child: HeroIcon(
+                HeroIcons.searchCircle,
+                solid: true, // Outlined icons are used by default.
+                color: theme.neoncolor,
+                size: 22.sp,
+              ),
+            ),
+            SizedBox(
+              width: 4.w,
+            )
+          ],
+        ),
+        drawer: sidebar(),
         body: CustomScrollView(
           // controller: Controllers.scrollController,
           controller: controller.scrollController,
@@ -278,6 +323,136 @@ class HomePage extends GetView<Controllers> {
   }
 }
 
+class sidebar extends StatelessWidget {
+  const sidebar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+        backgroundColor: HexColor("#303642"),
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: [
+                Container(
+                  height: 20.h,
+                  width: 100.w,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/header.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 10.h,
+                  left: 25.w,
+                  child: Container(
+                    height: 10.h,
+                    width: 10.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage('assets/icons/avatar.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            ListTile(
+              leading: const HeroIcon(
+                HeroIcons.home,
+                color: Colors.white,
+                size: 30,
+                solid: true,
+              ),
+              title: const Text('Home',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+              onTap: () {},
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            ListTile(
+              leading: const HeroIcon(
+                HeroIcons.inboxIn,
+                color: Colors.white,
+                size: 30,
+                solid: true,
+              ),
+              title: const Text('Contact',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+              onTap: () {},
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            ListTile(
+              leading: const HeroIcon(
+                HeroIcons.share,
+                color: Colors.white,
+                size: 30,
+                solid: true,
+              ),
+              title: const Text('Share',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+              onTap: () {},
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            ListTile(
+              leading: const HeroIcon(
+                HeroIcons.questionMarkCircle,
+                color: Colors.white,
+                size: 30,
+                solid: true,
+              ),
+              title: const Text('Privacy Policy',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+              onTap: () {},
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            ListTile(
+              leading: const HeroIcon(
+                HeroIcons.logout,
+                color: Colors.white,
+                size: 30,
+                solid: false,
+              ),
+              title: const Text('Exit',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+              onTap: () {},
+            ),
+          ],
+        ));
+  }
+}
+
 class WallpaperCard extends StatelessWidget {
   const WallpaperCard({
     Key? key,
@@ -350,43 +525,4 @@ List<Widget> generateShimmer() {
     );
   }
   return list;
-}
-
-AppBar _buildAppbar() {
-  return AppBar(
-    centerTitle: true,
-    backgroundColor: Colors.transparent,
-    elevation: 0,
-    leading: Container(
-        margin: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: theme.secondaryColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Image.asset("assets/icons/hamburger.png")),
-    title: Text(
-      "Wallpix",
-      style: GoogleFonts.nunito(
-          //   color: Color.fromRGBO(65, 84, 252, 0.44),
-          fontSize: 26,
-          letterSpacing: 1,
-          fontWeight: FontWeight.w600),
-    ),
-    actions: [
-      InkWell(
-        onTap: () async {
-          Get.to(SearchPage());
-        },
-        child: HeroIcon(
-          HeroIcons.searchCircle,
-          solid: true, // Outlined icons are used by default.
-          color: theme.neoncolor,
-          size: 22.sp,
-        ),
-      ),
-      SizedBox(
-        width: 4.w,
-      )
-    ],
-  );
 }

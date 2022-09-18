@@ -7,7 +7,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/CategorisPage.dart';
 import 'package:wallpix/UI/Homepage.dart';
-import 'package:wallpix/UI/ProfilePage.dart';
 import 'package:wallpix/Utility/API.dart';
 import 'package:wallpix/Utility/Constants.dart';
 import 'package:wallpix/controllers/LandingPageController.dart';
