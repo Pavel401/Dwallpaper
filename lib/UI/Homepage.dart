@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +12,14 @@ import 'package:shimmer/shimmer.dart';
 import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/SearchPage.dart';
 import 'package:wallpix/UI/SetWallpaper.dart';
+import 'package:wallpix/UI/Widgets/WallpaperCard.dart';
+import 'package:wallpix/UI/Widgets/drawer.dart';
 import 'package:wallpix/Utility/Constants.dart';
 import 'package:wallpix/controllers/DrawerController.dart';
 import 'package:wallpix/controllers/carosoleController.dart';
 import 'package:sizer/sizer.dart';
 
 import '../controllers/Appodeal.dart';
-import '../controllers/DrawerController.dart';
-import '../controllers/DrawerController.dart';
 
 class HomePage extends GetView<Controllers> {
   HomePage({super.key});
@@ -26,7 +28,7 @@ class HomePage extends GetView<Controllers> {
 
   @override
   Widget build(BuildContext context) {
-    print("widget initialized");
+    // print("widget initialized");
     Get.lazyPut(() => Controllers());
     return Scaffold(
         key: drawerController.scaffoldKey,
@@ -72,7 +74,7 @@ class HomePage extends GetView<Controllers> {
             )
           ],
         ),
-        drawer: sidebar(),
+        drawer: const sidebar(),
         body: CustomScrollView(
           // controller: Controllers.scrollController,
           controller: controller.scrollController,
@@ -320,191 +322,6 @@ class HomePage extends GetView<Controllers> {
       );
     }
     return list;
-  }
-}
-
-class sidebar extends StatelessWidget {
-  const sidebar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-        backgroundColor: HexColor("#303642"),
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: [
-                Container(
-                  height: 20.h,
-                  width: 100.w,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/header.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 10.h,
-                  left: 25.w,
-                  child: Container(
-                    height: 10.h,
-                    width: 10.h,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('assets/icons/avatar.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 2.h,
-            ),
-            ListTile(
-              leading: const HeroIcon(
-                HeroIcons.home,
-                color: Colors.white,
-                size: 30,
-                solid: true,
-              ),
-              title: const Text('Home',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              onTap: () {},
-            ),
-            SizedBox(
-              height: 1.h,
-            ),
-            ListTile(
-              leading: const HeroIcon(
-                HeroIcons.inboxIn,
-                color: Colors.white,
-                size: 30,
-                solid: true,
-              ),
-              title: const Text('Contact',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              onTap: () {},
-            ),
-            SizedBox(
-              height: 1.h,
-            ),
-            ListTile(
-              leading: const HeroIcon(
-                HeroIcons.share,
-                color: Colors.white,
-                size: 30,
-                solid: true,
-              ),
-              title: const Text('Share',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              onTap: () {},
-            ),
-            SizedBox(
-              height: 1.h,
-            ),
-            ListTile(
-              leading: const HeroIcon(
-                HeroIcons.questionMarkCircle,
-                color: Colors.white,
-                size: 30,
-                solid: true,
-              ),
-              title: const Text('Privacy Policy',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              onTap: () {},
-            ),
-            SizedBox(
-              height: 1.h,
-            ),
-            ListTile(
-              leading: const HeroIcon(
-                HeroIcons.logout,
-                color: Colors.white,
-                size: 30,
-                solid: false,
-              ),
-              title: const Text('Exit',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              onTap: () {},
-            ),
-          ],
-        ));
-  }
-}
-
-class WallpaperCard extends StatelessWidget {
-  const WallpaperCard({
-    Key? key,
-    required this.controller,
-    required this.i,
-  }) : super(key: key);
-
-  final Controllers controller;
-  final int i;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        var isInitialized = await Appodeal.show(Appodeal.INTERSTITIAL);
-
-        if (isInitialized) {
-          Appodeal.show(Appodeal.INTERSTITIAL);
-        } else {
-          print("not initialized");
-        }
-
-        Get.to(
-          () => ImageView(
-            id: controller.carosoleItems[i]['id'],
-            photographer:
-                controller.carosoleItems[i]['photographer'].toString(),
-            photographer_url:
-                controller.carosoleItems[i]['photographer_url'].toString(),
-            photographer_id: controller.carosoleItems[i]['photographer_id'],
-            large2x: controller.carosoleItems[i]['src']['portrait'].toString(),
-            large: controller.carosoleItems[i]['src']['portrait'].toString(),
-            width: controller.carosoleItems[i]['width'].toString(),
-            height: controller.carosoleItems[i]['height'].toString(),
-            avg_color: controller.carosoleItems[i]['avg_color'].toString(),
-          ),
-        );
-      },
-      child: CachedNetworkImage(
-        imageUrl: controller.carosoleItems[i]['src']['landscape'],
-        imageBuilder: (context, imageProvider) => Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-              image: imageProvider,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        errorWidget: (context, url, error) => Icon(Icons.error),
-      ),
-    );
   }
 }
 
