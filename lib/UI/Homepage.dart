@@ -1,5 +1,4 @@
-import 'dart:io';
-
+// ignore: file_names
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +18,9 @@ import 'package:wallpix/controllers/DrawerController.dart';
 import 'package:wallpix/controllers/carosoleController.dart';
 import 'package:sizer/sizer.dart';
 
-import '../controllers/Appodeal.dart';
-
+// ignore: must_be_immutable
 class HomePage extends GetView<Controllers> {
   HomePage({super.key});
-  AppodealAds appodealAds = Get.put(AppodealAds());
   SidebarController drawerController = Get.put(SidebarController());
 
   @override
@@ -209,7 +206,7 @@ class HomePage extends GetView<Controllers> {
                         if (isInitialized) {
                           Appodeal.show(Appodeal.INTERSTITIAL);
                         } else {
-                          print("not initialized");
+                          //   print("not initialized");
                         }
                         Get.to(
                           () => ImageView(

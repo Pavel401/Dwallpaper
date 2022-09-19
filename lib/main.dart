@@ -29,8 +29,8 @@ Future<void> initialization() async {
         AppodealAdType.Interstitial,
       ],
       onInitializationFinished: (errors) {
-        errors?.forEach((error) => print(error.desctiption));
-        print("onInitializationFinished: errors - ${errors?.length ?? 0}");
+        errors?.forEach((error) => {});
+        //  print("onInitializationFinished: errors - ${errors?.length ?? 0}");
       });
   Appodeal.setTesting(kReleaseMode ? false : true); //only not release mode
   Appodeal.setLogLevel(Appodeal.LogLevelVerbose);
@@ -46,7 +46,7 @@ class MyAppView extends GetView<Controllers> {
 
   @override
   Widget build(BuildContext context) {
-    print("widget initialized");
+    // print("widget initialized");
     //Get.lazyPut(() => Controllers());
     return Sizer(
       builder: (BuildContext context, Orientation orientation,

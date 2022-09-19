@@ -104,7 +104,7 @@ class sidebar extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   height: 400,
                                   width: 400,
                                   child: FutureBuilder(
@@ -163,7 +163,7 @@ class sidebar extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Do you want to exit?",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -178,24 +178,24 @@ class sidebar extends StatelessWidget {
                                         //  print('yes selected');
                                         exit(0);
                                       },
-                                      child: Text("Yes"),
+                                      child: const Text("Yes"),
                                       style: ElevatedButton.styleFrom(
                                         primary: HexColor("#3D4552"),
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 15),
+                                  const SizedBox(width: 15),
                                   Expanded(
                                       child: ElevatedButton(
                                     onPressed: () {
-                                      print('no selected');
+                                      // print('no selected');
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text("No",
-                                        style: TextStyle(color: Colors.black)),
                                     style: ElevatedButton.styleFrom(
                                       primary: Colors.white,
                                     ),
+                                    child: const Text("No",
+                                        style: TextStyle(color: Colors.black)),
                                   ))
                                 ],
                               )

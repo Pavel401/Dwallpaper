@@ -25,7 +25,7 @@ class WallpaperCard extends StatelessWidget {
         if (isInitialized) {
           Appodeal.show(Appodeal.INTERSTITIAL);
         } else {
-          print("not initialized");
+          //print("not initialized");
         }
 
         Get.to(

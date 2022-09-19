@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import 'package:wallpix/controllers/SearchController.dart';
 import 'package:wallpix/providers/Categoryprovider.dart';
-import 'package:wallpix/providers/SearchProvider.dart';
 
 class CategorisWallpaperController extends GetxController {
   // ignore: non_constant_identifier_names
@@ -29,10 +28,10 @@ class CategorisWallpaperController extends GetxController {
     CategorisScrollController.addListener(() {
       if (CategorisScrollController.position.pixels ==
           CategorisScrollController.position.maxScrollExtent) {
-        print("reached end");
+        //print("reached end");
 
         if (page < 5) {
-          print(page);
+          // print(page);
           page++;
           Moregetwalls(page, query);
         }
@@ -106,6 +105,7 @@ class CategorisWallpaperController extends GetxController {
   InternalFinalCallback<void> get onDelete => super.onDelete;
 
   @override
+  // ignore: unnecessary_overrides
   void onReady() {
     // TODO: implement onReady
     super.onReady();

@@ -1,18 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
-import 'package:wallpix/UI/SetWallpaper.dart';
 import 'package:wallpix/UI/Widgets/CircleImageHolder.dart';
 import 'package:wallpix/Utility/Constants.dart';
 
-import '../controllers/LandingPageController.dart';
 import '../controllers/carosoleController.dart';
 
 class ProfilePAge extends GetView<Controllers> {
@@ -22,7 +17,7 @@ class ProfilePAge extends GetView<Controllers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: CustomScrollView(
+      body: const CustomScrollView(
         // ignore: prefer_const_literals_to_create_immutables
         slivers: [
           _ProfileHeader(),
@@ -81,7 +76,7 @@ class _ProfileHeader extends StatelessWidget {
         children: [
           Container(
             height: 20.h,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 // color: Colors.black,
                 image: DecorationImage(
                     fit: BoxFit.cover,

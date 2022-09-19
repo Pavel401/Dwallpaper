@@ -24,7 +24,7 @@ class SearchedWallpaperController extends GetxController {
     SearchscrollController.addListener(() {
       if (SearchscrollController.position.pixels ==
           SearchscrollController.position.maxScrollExtent) {
-        print("reached end");
+        // print("reached end");
         if (page < 5) {
           page++;
           Moregetwalls(page, query);
@@ -58,7 +58,7 @@ class SearchedWallpaperController extends GetxController {
 
   void Moregetwalls(int page, String query) {
     try {
-      print(page);
+      //  print(page);
       isDataProcessing(true);
       SearchWallpaperProvider().loadMoreSearchedWallpaper(page, query).then(
           (value) {

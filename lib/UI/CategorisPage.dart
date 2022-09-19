@@ -52,7 +52,7 @@ class Categoris extends GetView<CategorisWallpaperController> {
                 if (isInitialized) {
                   Appodeal.show(Appodeal.INTERSTITIAL);
                 } else {
-                  print("not initialized");
+                  //  print("not initialized");
                 }
                 controller.CategoryQuery.value = title[index].toString();
                 controller.getwalls(title[index].toString());

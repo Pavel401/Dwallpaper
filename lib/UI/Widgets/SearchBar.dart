@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wallpix/controllers/SearchController.dart';
 import '../../controllers/SearchedWallpaperComtroller.dart';
@@ -30,7 +29,7 @@ class SearchBar extends GetView<SearchedWallpaperController> {
 
             controller.getwalls(value.toString());
             controller.paginateTask(value.toString());
-            print(controller.page);
+            //  print(controller.page);
           },
           controller: Searchcontroller.searchController,
           //initialValue: ,

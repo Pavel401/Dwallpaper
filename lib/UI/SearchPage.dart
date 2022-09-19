@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -11,7 +10,6 @@ import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/Widgets/SearchBar.dart';
 import 'package:wallpix/controllers/SearchController.dart';
 import 'package:wallpix/controllers/SearchedWallpaperComtroller.dart';
-import '.././Utility/Constants.dart';
 import 'SetWallpaper.dart';
 import 'package:get/get.dart';
 
@@ -170,7 +168,7 @@ class SearchPage extends GetView<SearchedWallpaperController> {
                         if (isInitialized) {
                           Appodeal.show(Appodeal.INTERSTITIAL);
                         } else {
-                          print("not initialized");
+                          //    print("not initialized");
                         }
                         Get.to(
                           () => ImageView(

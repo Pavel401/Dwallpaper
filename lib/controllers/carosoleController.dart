@@ -24,9 +24,9 @@ class Controllers extends GetxController {
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
-        print("reached end");
+        // print("reached end");
         if (page < 6) {
-          print(page);
+          // print(page);
           page++;
           Moregetwalls(page);
         }
@@ -57,12 +57,13 @@ class Controllers extends GetxController {
     }
   }
 
+  // ignore: non_constant_identifier_names
   void Moregetwalls(int page) {
     try {
       isDataProcessing(true);
       WallpaperProvider().loadMoreWallpaper(page).then((value) {
         isDataProcessing(false);
-        if (value.length == 0) {
+        if (value.isEmpty) {
           isMoreDataAvailable(false);
         } else {
           wallpaperList.addAll(value);
@@ -102,7 +103,6 @@ class Controllers extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getwalls();
     getCarosole();
     paginateTask();
