@@ -36,7 +36,6 @@ def appodeal
   pod 'BDMAmazonAdapter', '~> 1.9.4.2'
   pod 'BDMSmaatoAdapter', '~> 1.9.4'
   pod 'BDMTapjoyAdapter', '~> 1.9.4'
-  pod 'APDGoogleAdMobAdapter', '3.0.0.2'
   pod 'APDIABAdapter', '3.0.0.1' # Required
   pod 'BDMIABAdapter', '~> 1.9.4'
   pod 'APDIronSourceAdapter', '3.0.0.1'

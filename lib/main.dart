@@ -55,7 +55,9 @@ class MyAppView extends GetView<Controllers> {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: theme.primaryColor,
+
             scaffoldBackgroundColor: theme.primaryColor,
+
             //secondaryHeaderColor:
           ),
           home: Scaffold(

@@ -24,9 +24,6 @@ PODS:
   - APDBidMachineAdapter (3.0.0.2):
     - Appodeal (= 3.0.0)
     - BidMachine (= 1.9.4.2)
-  - APDGoogleAdMobAdapter (3.0.0.2):
-    - Appodeal (= 3.0.0)
-    - Google-Mobile-Ads-SDK (= 9.6.0)
   - APDIABAdapter (3.0.0.1):
     - Appodeal (= 3.0.0)
   - APDIronSourceAdapter (3.0.0.1):
@@ -121,47 +118,6 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - Google-Mobile-Ads-SDK (9.6.0):
-    - GoogleAppMeasurement (< 10.0, >= 7.0)
-    - GoogleUserMessagingPlatform (>= 1.1)
-  - GoogleAppMeasurement (9.6.0):
-    - GoogleAppMeasurement/AdIdSupport (= 9.6.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/MethodSwizzler (~> 7.7)
-    - GoogleUtilities/Network (~> 7.7)
-    - "GoogleUtilities/NSData+zlib (~> 7.7)"
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (9.6.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 9.6.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/MethodSwizzler (~> 7.7)
-    - GoogleUtilities/Network (~> 7.7)
-    - "GoogleUtilities/NSData+zlib (~> 7.7)"
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (9.6.0):
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/MethodSwizzler (~> 7.7)
-    - GoogleUtilities/Network (~> 7.7)
-    - "GoogleUtilities/NSData+zlib (~> 7.7)"
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleUserMessagingPlatform (2.0.1)
-  - GoogleUtilities/AppDelegateSwizzler (7.8.0):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.8.0):
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.8.0):
-    - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.8.0):
-    - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.8.0):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.8.0)"
-  - GoogleUtilities/Reachability (7.8.0):
-    - GoogleUtilities/Logger
   - hexcolor (0.0.1):
     - Flutter
   - image_gallery_saver (1.5.0):
@@ -170,11 +126,6 @@ PODS:
   - myTargetSDK (5.15.2):
     - myTrackerSDK (~> 3.0.3)
   - myTrackerSDK (3.0.7)
-  - nanopb (2.30909.0):
-    - nanopb/decode (= 2.30909.0)
-    - nanopb/encode (= 2.30909.0)
-  - nanopb/decode (2.30909.0)
-  - nanopb/encode (2.30909.0)
   - OMSDK_Appodeal (1.3.27)
   - OneKit-Pangle/BaseKit (1.1.21-pangle)
   - OneKit-Pangle/Database (1.1.21-pangle):
@@ -184,7 +135,6 @@ PODS:
     - Flutter
   - permission_handler_apple (9.0.4):
     - Flutter
-  - PromisesObjC (2.1.1)
   - Protobuf (3.21.5)
   - RangersAPM-Pangle/Core (2.3.2-pangle):
     - OneKit-Pangle/BaseKit (= 1.1.21-pangle)
@@ -339,7 +289,6 @@ DEPENDENCIES:
   - APDAdColonyAdapter (= 3.0.0.1)
   - APDAppLovinAdapter (= 3.0.0.1)
   - APDBidMachineAdapter (= 3.0.0.2)
-  - APDGoogleAdMobAdapter (= 3.0.0.2)
   - APDIABAdapter (= 3.0.0.1)
   - APDIronSourceAdapter (= 3.0.0.1)
   - APDMetaAudienceNetworkAdapter (= 3.0.0.1)
@@ -375,7 +324,6 @@ SPEC REPOS:
     - APDAdColonyAdapter
     - APDAppLovinAdapter
     - APDBidMachineAdapter
-    - APDGoogleAdMobAdapter
     - APDIABAdapter
     - APDIronSourceAdapter
     - APDMetaAudienceNetworkAdapter
@@ -401,17 +349,11 @@ SPEC REPOS:
     - CriteoPublisherSdk
     - FBAudienceNetwork
     - FMDB
-    - Google-Mobile-Ads-SDK
-    - GoogleAppMeasurement
-    - GoogleUserMessagingPlatform
-    - GoogleUtilities
     - IronSourceSDK
     - myTargetSDK
     - myTrackerSDK
-    - nanopb
     - OMSDK_Appodeal
     - OneKit-Pangle
-    - PromisesObjC
     - Protobuf
     - RangersAPM-Pangle
     - smaato-ios-sdk
@@ -451,7 +393,6 @@ SPEC CHECKSUMS:
   APDAdColonyAdapter: 76198c7fce9988815fdb812c3bc50e0384777842
   APDAppLovinAdapter: cbfde1553036ce11ac771f375e727365e2fb76c3
   APDBidMachineAdapter: 8dc54420800a715ee50760e086c347f9efcf4d3e
-  APDGoogleAdMobAdapter: 89a9615bba65fc589fd6dcbc0c9a2faf15b33bca
   APDIABAdapter: 1877fddceb4eb9b32e3e58631b3c868776586708
   APDIronSourceAdapter: 08903d7d05d10635384d4c9acad7fa3e3cda42f3
   APDMetaAudienceNetworkAdapter: b5f1bb98fda100a0fa5f2d1fbd1f378dbe56ca75
@@ -479,21 +420,15 @@ SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  Google-Mobile-Ads-SDK: bdf13d37aa77e368510687b5305d4972b4f9e9c7
-  GoogleAppMeasurement: 6de2b1a69e4326eb82ee05d138f6a5cb7311bcb1
-  GoogleUserMessagingPlatform: 5f8b30daf181805317b6b985bb51c1ff3beca054
-  GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
   hexcolor: fdfb9c4258ad96e949c2dbcdf790a62194b8aa89
   image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
   IronSourceSDK: 2c5aa482ea7c5e85ff934d2c8bb34fe3ceb54f43
   myTargetSDK: e79ecceb7ce283f274202ff8e8b64b854ac8edad
   myTrackerSDK: 3b21ddcc191b818d0f39a518413ff98bf6544c76
-  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OMSDK_Appodeal: f0d5df63dd9a2cadf30b3e0a4f5bfd498375baa3
   OneKit-Pangle: 68a778c39d36ed8feffd667a6b49225427bcf286
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
-  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   Protobuf: 7504b04fffcf6662ad629694db8231f5e744327f
   RangersAPM-Pangle: 97c8fe91af08574a739cc72a714b735efb6c891f
   smaato-ios-sdk: bc1f78e079ac0ef88f9cdbe29205db0af405ce61
@@ -510,6 +445,6 @@ SPEC CHECKSUMS:
   YandexMobileAds: 761e7844016da8f391d16e485640d828d48c3672
   YandexMobileMetrica: f5f9c605eaaba33ff6ab2b6bc3259035ca60ed87
 
-PODFILE CHECKSUM: 36f7c579f87d31a4904b51e6313e46dc2d502bfb
+PODFILE CHECKSUM: c44ed29f91f949d075b33d54a5d605adce00f294
 
 COCOAPODS: 1.11.3
