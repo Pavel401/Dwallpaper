@@ -38,25 +38,6 @@ Future<void> initialization() async {
   Appodeal.setAutoCache(Appodeal.INTERSTITIAL, true);
   Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, true);
   Appodeal.setUseSafeArea(true);
-  Appodeal.setInterstitialCallbacks(
-      onInterstitialLoaded: (isPrecache) =>
-          print('onInterstitialLoaded: isPrecache - $isPrecache'),
-      onInterstitialFailedToLoad: () => print('onInterstitialFailedToLoad'),
-      onInterstitialShown: () => print('onInterstitialShown'),
-      onInterstitialShowFailed: () => print('onInterstitialShowFailed'),
-      onInterstitialClicked: () => print('onInterstitialClicked'),
-      onInterstitialClosed: () => print('onInterstitialClosed'),
-      onInterstitialExpired: () => print('onInterstitialExpired'));
-
-  Appodeal.setRewardedVideoCallbacks(
-      onRewardedVideoLoaded: (isPrecache) => {},
-      onRewardedVideoFailedToLoad: () => {},
-      onRewardedVideoShown: () => {},
-      onRewardedVideoShowFailed: () => {},
-      onRewardedVideoFinished: (amount, reward) => {},
-      onRewardedVideoClosed: (isFinished) => {},
-      onRewardedVideoExpired: () => {},
-      onRewardedVideoClicked: () => {});
 }
 
 class MyAppView extends GetView<Controllers> {

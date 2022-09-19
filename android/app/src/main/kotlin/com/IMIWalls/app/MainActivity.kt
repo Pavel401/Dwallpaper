@@ -1,4 +1,4 @@
-package com.example.wallpix
+package com.IMIWalls.app
 
 import io.flutter.embedding.android.FlutterActivity
 
