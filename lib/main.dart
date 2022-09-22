@@ -17,6 +17,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // Set ad auto caching enabled or disabled
 // By default autocache is enabled for all ad types
+  Appodeal.setChildDirectedTreatment(true);
+
   initialization();
   runApp(MyAppView());
 }
