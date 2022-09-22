@@ -47,7 +47,7 @@
 		<true/>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>photos</string>
+	<string>IMI Walls needs your Photos access to save Wallpapers to your photo gallery </string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>IMI Walls needs your advertising identifier to provide personalised advertising experience tailored to you</string>
 	<key>SKAdNetworkItems</key>
