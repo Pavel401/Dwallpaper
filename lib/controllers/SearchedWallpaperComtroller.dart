@@ -81,7 +81,7 @@ class SearchedWallpaperController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    String query = "amoled wallpaper black dark";
+    String query = "nature";
     getwalls(query);
 
     paginateTask(Searchcontroller.searchController.text);

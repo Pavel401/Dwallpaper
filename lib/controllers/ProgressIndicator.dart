@@ -56,7 +56,8 @@ class indicator extends GetxController {
                   progressIndicator.value == 100
                       ? "Wallpaper Downloaded"
                       : "Downloading...",
-                  style: GoogleFonts.poppins(color: Colors.white),
+                  style:
+                      GoogleFonts.poppins(color: Colors.white, fontSize: 12.sp),
                 ),
               ],
             )),

@@ -9,5 +9,5 @@ class SearchController extends GetxController {
   }
 
   TextEditingController searchController =
-      new TextEditingController(text: "amoled wallpaper black dark");
+      new TextEditingController(text: "nature");
 }
