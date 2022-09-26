@@ -119,7 +119,7 @@ class Categoris extends GetView<CategorisWallpaperController> {
           ),
           child: Image.asset("assets/icons/hamburger.png")),
       title: Text(
-        "Wallpix",
+        "IMI Walls",
         style: GoogleFonts.nunito(
             //   color: Color.fromRGBO(65, 84, 252, 0.44),
             fontSize: 26,

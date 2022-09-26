@@ -15,9 +15,6 @@ import 'package:sizer/sizer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // Set ad auto caching enabled or disabled
-// By default autocache is enabled for all ad types
-  Appodeal.setChildDirectedTreatment(true);
 
   initialization();
   runApp(MyAppView());
@@ -32,11 +29,9 @@ Future<void> initialization() async {
       ],
       onInitializationFinished: (errors) {
         errors?.forEach((error) => {});
-        //  print("onInitializationFinished: errors - ${errors?.length ?? 0}");
       });
-  Appodeal.setTesting(kReleaseMode ? false : true); //only not release mode
+  Appodeal.setTesting(kReleaseMode ? false : true);
   Appodeal.setLogLevel(Appodeal.LogLevelVerbose);
-
   Appodeal.setAutoCache(Appodeal.INTERSTITIAL, true);
   Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, true);
   Appodeal.setUseSafeArea(true);
