@@ -52,6 +52,18 @@ class ImageView extends StatelessWidget {
       }
     } else {
       // print("andrpoid");
+      var status = await Permission.photos.status;
+      if (status.isGranted) {
+        c.save(this.large2x, this.id);
+        // print("Permission is granted");
+      } else if (status.isDenied) {
+        if (await Permission.photos.request().isGranted) {
+          c.save(this.large2x, this.id);
+
+          // Either the permission was already granted before or the user just granted it.
+          //  print("Permission was granted");
+        }
+      }
     }
   }
 

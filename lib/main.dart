@@ -15,7 +15,6 @@ import 'package:sizer/sizer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
   initialization();
   runApp(MyAppView());
 }
@@ -30,7 +29,7 @@ Future<void> initialization() async {
       onInitializationFinished: (errors) {
         errors?.forEach((error) => {});
       });
-  Appodeal.setTesting(kReleaseMode ? false : true);
+  //Appodeal.setTesting(kReleaseMode ? false : true);
   Appodeal.setLogLevel(Appodeal.LogLevelVerbose);
   Appodeal.setAutoCache(Appodeal.INTERSTITIAL, true);
   Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, true);

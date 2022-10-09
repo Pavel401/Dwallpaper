@@ -111,13 +111,6 @@ class Categoris extends GetView<CategorisWallpaperController> {
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: Container(
-          margin: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: theme.secondaryColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Image.asset("assets/icons/hamburger.png")),
       title: Text(
         "IMI Walls",
         style: GoogleFonts.nunito(

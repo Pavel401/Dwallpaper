@@ -34,6 +34,7 @@ class sidebar extends StatelessWidget {
                 Positioned(
                   top: 10.h,
                   left: 25.w,
+                  right: 25.w,
                   child: Container(
                     height: 10.h,
                     width: 10.h,
