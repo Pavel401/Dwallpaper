@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
@@ -182,7 +184,7 @@ class ImageView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     HeroIcon(
-                      HeroIcons.badgeCheck,
+                      HeroIcons.checkBadge,
                       solid: false,
                       color: Colors.green,
                     ),
@@ -205,7 +207,7 @@ class ImageView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     HeroIcon(
-                      HeroIcons.arrowsExpand,
+                      HeroIcons.arrowsPointingOut,
                       solid: false,
                       color: Colors.white,
                     ),
@@ -228,7 +230,7 @@ class ImageView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     HeroIcon(
-                      HeroIcons.colorSwatch,
+                      HeroIcons.swatch,
                       solid: false,
                       color: Colors.white,
                     ),
@@ -250,52 +252,292 @@ class ImageView extends StatelessWidget {
                 SizedBox(
                   width: 2.w,
                 ),
-                GestureDetector(
-                  onTap: () async {
-                    _askPermission();
-                    var isInitialized =
-                        await Appodeal.show(Appodeal.REWARDED_VIDEO);
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () async {
+                        _askPermission();
+                        var isInitialized =
+                            await Appodeal.show(Appodeal.REWARDED_VIDEO);
 
-                    if (isInitialized) {
-                      Appodeal.show(Appodeal.REWARDED_VIDEO);
-                    } else {
-                      //  print("not initialized");
-                    }
-                  },
-                  child: Container(
-                    height: 8.h,
-                    width: 25.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 20,
-                          offset: Offset(0, 3), // changes position of shadow
-                        )
-                      ],
-                      color: HexColor("#3D4552"),
-                      //borderRadius: BorderRadius.circular(12),
+                        if (isInitialized) {
+                          Appodeal.show(Appodeal.REWARDED_VIDEO);
+                        } else {
+                          //  print("not initialized");
+                        }
+                      },
+                      child: Container(
+                        height: 8.h,
+                        width: 25.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 1,
+                              blurRadius: 20,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            )
+                          ],
+                          color: HexColor("#3D4552"),
+                          //borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: HeroIcon(
+                            HeroIcons.arrowDownCircle,
+                            color: Colors.white,
+                            size: 25.sp,
+                          ),
+                        ),
+                      ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        HeroIcon(
-                          HeroIcons.download,
-                          color: Colors.white,
-                          size: 20.sp,
+                    GestureDetector(
+                      onTap: () async {
+                        openSetwallpaper();
+                      },
+                      child: Container(
+                        height: 8.h,
+                        width: 25.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 1,
+                              blurRadius: 20,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            )
+                          ],
+                          color: HexColor("#3D4552"),
+                          //borderRadius: BorderRadius.circular(12),
                         ),
-                        SizedBox(
-                          height: 1.h,
+                        child: Center(
+                          child: HeroIcon(
+                            HeroIcons.photo,
+                            color: Colors.white,
+                            size: 25.sp,
+                          ),
                         ),
-                      ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 2.w,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void openSetwallpaper() {
+    Get.bottomSheet(
+      Padding(
+        padding: EdgeInsets.only(left: 1.w, right: 1.w),
+        child: Container(
+          height: 40.h,
+          width: 100.w,
+          decoration: BoxDecoration(
+            color: HexColor("#303642"),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.only(left: 3.w, right: 3.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 2.h,
+                ),
+                Container(
+                  height: 0.5.h,
+                  width: 10.w,
+                  decoration: BoxDecoration(
+                    color: theme.neoncolor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                SizedBox(
+                  height: 2.h,
+                ),
+                Material(
+                  color: HexColor("#3D4552"),
+                  borderRadius: BorderRadius.circular(18),
+                  child: InkWell(
+                    onTap: () async {
+                      String result;
+// Platform messages may fail, so we use a try/catch PlatformException.
+                      try {
+                        var isInitialized =
+                            await Appodeal.show(Appodeal.REWARDED_VIDEO);
+
+                        if (isInitialized) {
+                          Appodeal.show(Appodeal.REWARDED_VIDEO);
+                        } else {
+                          //  print("not initialized");
+                        }
+                        result = await AsyncWallpaper.setWallpaper(
+                          url: this.large2x,
+                          wallpaperLocation: AsyncWallpaper.HOME_SCREEN,
+                          goToHome: false,
+                        )
+                            ? 'Wallpaper set'
+                            : 'Failed to get wallpaper.';
+
+                        Get.snackbar(
+                          "Wallpaper Updated",
+                          "",
+                          icon: Icon(Icons.check, color: Colors.white),
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      } on PlatformException {
+                        result = 'Failed to get wallpaper.';
+                      }
+                    },
+                    borderRadius: BorderRadius.circular(18),
+                    child: Container(
+                      height: 6.h,
+                      width: 80.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(color: theme.neoncolor, width: 2),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Home Screen",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  width: 2.w,
+                  height: 2.h,
+                ),
+                Material(
+                  color: HexColor("#3D4552"),
+                  borderRadius: BorderRadius.circular(18),
+                  child: InkWell(
+                    onTap: () async {
+                      String result;
+// Platform messages may fail, so we use a try/catch PlatformException.
+                      try {
+                        var isInitialized =
+                            await Appodeal.show(Appodeal.REWARDED_VIDEO);
+
+                        if (isInitialized) {
+                          Appodeal.show(Appodeal.REWARDED_VIDEO);
+                        } else {
+                          //  print("not initialized");
+                        }
+                        result = await AsyncWallpaper.setWallpaper(
+                          url: this.large2x,
+                          wallpaperLocation: AsyncWallpaper.LOCK_SCREEN,
+                          goToHome: true,
+                        )
+                            ? 'Wallpaper set'
+                            : 'Failed to get wallpaper.';
+
+                        Get.snackbar(
+                          "Wallpaper Updated",
+                          "",
+                          icon: Icon(Icons.check, color: Colors.white),
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      } on PlatformException {
+                        result = 'Failed to get wallpaper.';
+                      }
+                    },
+                    borderRadius: BorderRadius.circular(18),
+                    child: Container(
+                      height: 6.h,
+                      width: 80.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(color: theme.neoncolor, width: 2),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Lock Screen",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 2.h,
+                ),
+                Material(
+                  color: HexColor("#3D4552"),
+                  borderRadius: BorderRadius.circular(18),
+                  child: InkWell(
+                    onTap: () async {
+                      String result;
+// Platform messages may fail, so we use a try/catch PlatformException.
+                      try {
+                        var isInitialized =
+                            await Appodeal.show(Appodeal.REWARDED_VIDEO);
+
+                        if (isInitialized) {
+                          Appodeal.show(Appodeal.REWARDED_VIDEO);
+                        } else {
+                          //  print("not initialized");
+                        }
+                        result = await AsyncWallpaper.setWallpaper(
+                          url: this.large2x,
+                          wallpaperLocation: AsyncWallpaper.BOTH_SCREENS,
+                          goToHome: true,
+                        )
+                            ? 'Wallpaper set'
+                            : 'Failed to get wallpaper.';
+
+                        Get.snackbar(
+                          "Wallpaper Updated",
+                          "",
+                          icon: Icon(Icons.check, color: Colors.white),
+                          snackPosition: SnackPosition.TOP,
+                        );
+                      } on PlatformException {
+                        result = 'Failed to get wallpaper.';
+                      }
+                    },
+                    borderRadius: BorderRadius.circular(18),
+                    child: Container(
+                      height: 6.h,
+                      width: 80.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(color: theme.neoncolor, width: 2),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Both Screen",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

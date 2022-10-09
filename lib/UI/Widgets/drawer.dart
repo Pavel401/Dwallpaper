@@ -139,7 +139,7 @@ class sidebar extends StatelessWidget {
             ),
             ListTile(
               leading: const HeroIcon(
-                HeroIcons.logout,
+                HeroIcons.arrowLeftOnRectangle,
                 color: Colors.white,
                 size: 30,
                 solid: false,

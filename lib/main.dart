@@ -29,7 +29,7 @@ Future<void> initialization() async {
       onInitializationFinished: (errors) {
         errors?.forEach((error) => {});
       });
-  //Appodeal.setTesting(kReleaseMode ? false : true);
+  Appodeal.setTesting(kReleaseMode ? false : true);
   Appodeal.setLogLevel(Appodeal.LogLevelVerbose);
   Appodeal.setAutoCache(Appodeal.INTERSTITIAL, true);
   Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, true);
@@ -61,9 +61,9 @@ class MyAppView extends GetView<Controllers> {
             bottomNavigationBar: Obx(
               () => CustomNavigationBar(
                 elevation: 10,
-                isFloating: true,
+                //isFloating: true,
                 iconSize: 30.0,
-                borderRadius: Radius.circular(12),
+                borderRadius: Radius.circular(5),
                 selectedColor: theme.neoncolor,
                 strokeColor: Color(0x30040307),
                 unSelectedColor: Colors.white,
@@ -73,7 +73,7 @@ class MyAppView extends GetView<Controllers> {
                     icon: const HeroIcon(HeroIcons.home),
                   ),
                   CustomNavigationBarItem(
-                    icon: const HeroIcon(HeroIcons.collection),
+                    icon: const HeroIcon(HeroIcons.rectangleStack),
                   ),
                 ],
                 currentIndex: landingPageController.tabIndex.value,

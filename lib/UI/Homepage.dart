@@ -60,7 +60,7 @@ class HomePage extends GetView<Controllers> {
                 Get.to(SearchPage());
               },
               child: HeroIcon(
-                HeroIcons.searchCircle,
+                HeroIcons.magnifyingGlassCircle,
                 solid: true, // Outlined icons are used by default.
                 color: theme.neoncolor,
                 size: 22.sp,
