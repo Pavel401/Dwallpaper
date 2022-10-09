@@ -390,7 +390,7 @@ class ImageView extends StatelessWidget {
                         result = await AsyncWallpaper.setWallpaper(
                           url: this.large2x,
                           wallpaperLocation: AsyncWallpaper.HOME_SCREEN,
-                          goToHome: false,
+                          goToHome: true,
                         )
                             ? 'Wallpaper set'
                             : 'Failed to get wallpaper.';
