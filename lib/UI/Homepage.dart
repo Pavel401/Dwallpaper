@@ -71,7 +71,7 @@ class HomePage extends GetView<Controllers> {
             )
           ],
         ),
-        drawer: const sidebar(),
+        drawer: sidebar(),
         body: CustomScrollView(
           // controller: Controllers.scrollController,
           controller: controller.scrollController,

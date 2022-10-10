@@ -9,12 +9,13 @@ import 'package:sizer/sizer.dart';
 import 'package:wallpix/Utility/Constants.dart';
 
 class sidebar extends StatelessWidget {
-  const sidebar({
+  sidebar({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    BuildContext dialogcontext;
     return Drawer(
         backgroundColor: HexColor("#303642"),
         child: Column(
@@ -124,10 +125,10 @@ class sidebar extends StatelessWidget {
                                             MaterialStateProperty.all(
                                                 theme.secondaryColor)),
                                     onPressed: () {
-                                      Get.back();
+                                      Navigator.pop(dialogcontext);
                                     },
-                                    icon: HeroIcon(HeroIcons.check),
-                                    label: Text("Ok"))
+                                    icon: const HeroIcon(HeroIcons.check),
+                                    label: const Text("Ok"))
                               ],
                             ),
                           ));

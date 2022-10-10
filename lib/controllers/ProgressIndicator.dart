@@ -13,7 +13,6 @@ import 'package:wallpix/Utility/Constants.dart';
 //"https://res.cloudinary.com/dc0tfxkph/image/upload/v1662962046/pat-whelen--9zbTfPFxoI-unsplash.jpg"
 class indicator extends GetxController {
   var progressIndicator = 0.obs;
-
   save(String url, int id) async {
     Random random = new Random();
     openDialog();
@@ -84,11 +83,12 @@ class indicator extends GetxController {
                       ),
                 onPressed: () {
                   progressIndicator.value == 100
-                      ? Get.back()
+                      ? Navigator.of(Get.overlayContext!, rootNavigator: true)
+                          .pop()
                       : Get.snackbar(
                           "Wallpaper is downloading",
                           "Wait until it is downloaded",
-                          icon: Icon(Icons.error, color: Colors.white),
+                          icon: const Icon(Icons.error, color: Colors.white),
                           snackPosition: SnackPosition.BOTTOM,
                         );
                 });
