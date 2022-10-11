@@ -94,6 +94,7 @@ class ImageView extends StatelessWidget {
       ),
       body: Hero(
         tag: this.id,
+        transitionOnUserGestures: true,
         child: Stack(
           children: [
             Container(
@@ -390,7 +391,7 @@ class ImageView extends StatelessWidget {
                         result = await AsyncWallpaper.setWallpaper(
                           url: this.large2x,
                           wallpaperLocation: AsyncWallpaper.HOME_SCREEN,
-                          goToHome: true,
+                          goToHome: false,
                         )
                             ? 'Wallpaper set'
                             : 'Failed to get wallpaper.';
@@ -447,7 +448,7 @@ class ImageView extends StatelessWidget {
                         result = await AsyncWallpaper.setWallpaper(
                           url: this.large2x,
                           wallpaperLocation: AsyncWallpaper.LOCK_SCREEN,
-                          goToHome: true,
+                          goToHome: false,
                         )
                             ? 'Wallpaper set'
                             : 'Failed to get wallpaper.';
@@ -504,7 +505,7 @@ class ImageView extends StatelessWidget {
                         result = await AsyncWallpaper.setWallpaper(
                           url: this.large2x,
                           wallpaperLocation: AsyncWallpaper.BOTH_SCREENS,
-                          goToHome: true,
+                          goToHome: false,
                         )
                             ? 'Wallpaper set'
                             : 'Failed to get wallpaper.';

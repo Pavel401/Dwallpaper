@@ -22,7 +22,7 @@ class LocalHomePageController extends GetxController {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
         // print("reached end");
-        if (max < 80) {
+        if (max < 160) {
           max = max + 20;
           print(max.toString() + "......................");
           update();

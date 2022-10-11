@@ -21,6 +21,8 @@ import 'package:wallpix/controllers/LocalHomePageController.dart';
 import 'package:wallpix/controllers/carosoleController.dart';
 import 'package:sizer/sizer.dart';
 
+import 'Widgets/CarosoleWidget.dart';
+
 // ignore: must_be_immutable
 class local extends GetView<Controllers> {
   local({super.key});
@@ -83,7 +85,50 @@ class local extends GetView<Controllers> {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  _carosoleObserver(),
+                  FutureBuilder(
+                    future: DefaultAssetBundle.of(context)
+                        .loadString('assets/Carosole.json'),
+                    builder: ((context, snapshot) {
+                      var new_data = json.decode(snapshot.data.toString());
+
+                      if (snapshot.hasData) {
+                        return CarouselSlider(
+                          items: generateSlider(new_data),
+                          options: CarouselOptions(
+                            height: 20.h,
+                            enableInfiniteScroll: true,
+                            autoPlay: true,
+                            autoPlayInterval: const Duration(seconds: 3),
+                            autoPlayAnimationDuration:
+                                const Duration(milliseconds: 800),
+                            // autoPlayCurve: Curves.fastOutSlowIn,
+                            // enlargeCenterPage: true,
+                            aspectRatio: 2.0,
+                            enlargeCenterPage: true,
+                            scrollDirection: Axis.horizontal,
+                            reverse: false,
+                          ),
+                        );
+                      } else {
+                        return CarouselSlider(
+                            items: generateShimmer(),
+                            options: CarouselOptions(
+                              height: 20.h,
+                              enableInfiniteScroll: true,
+                              autoPlay: true,
+                              autoPlayInterval: const Duration(seconds: 3),
+                              autoPlayAnimationDuration:
+                                  const Duration(milliseconds: 800),
+                              // autoPlayCurve: Curves.fastOutSlowIn,
+                              // enlargeCenterPage: true,
+                              aspectRatio: 2.0,
+                              enlargeCenterPage: true,
+                              scrollDirection: Axis.horizontal,
+                              reverse: false,
+                            ));
+                      }
+                    }),
+                  ),
                 ],
               ),
             ),
@@ -125,7 +170,7 @@ class local extends GetView<Controllers> {
                             builder: (context, snapshot) {
                               var new_data =
                                   json.decode(snapshot.data.toString());
-                              print(new_data.toString());
+                              // print(new_data.toString());
 
                               if (snapshot.hasData) {
                                 return AlignedGridView.count(
@@ -141,7 +186,7 @@ class local extends GetView<Controllers> {
                                     itemBuilder: (context, index) {
                                       if (index ==
                                           localHomePageController.max - 1) {
-                                        return localHomePageController.max < 80
+                                        return localHomePageController.max < 160
                                             ? Center(
                                                 child:
                                                     CircularProgressIndicator(
@@ -150,9 +195,10 @@ class local extends GetView<Controllers> {
                                               )
                                             : Center(
                                                 child: Text(
-                                                  "No More Data",
+                                                  "More Wallpapers Coming Soon",
+                                                  textAlign: TextAlign.center,
                                                   style: GoogleFonts.poppins(
-                                                      fontSize: 14.sp,
+                                                      fontSize: 10.sp,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.white),
@@ -161,16 +207,6 @@ class local extends GetView<Controllers> {
                                       } else {
                                         return InkWell(
                                           onTap: () async {
-                                            var isInitialized =
-                                                await Appodeal.show(
-                                                    Appodeal.INTERSTITIAL);
-
-                                            if (isInitialized) {
-                                              Appodeal.show(
-                                                  Appodeal.INTERSTITIAL);
-                                            } else {
-                                              print("not initialized");
-                                            }
                                             Get.to(
                                               () => ImageView(
                                                 id: new_data['photos'][index]
@@ -205,8 +241,8 @@ class local extends GetView<Controllers> {
                                             );
                                           },
                                           child: Hero(
-                                            tag: new_data['photos'][index]
-                                                ['id'],
+                                            transitionOnUserGestures: true,
+                                            tag: new_data['photos'][index],
                                             child: Container(
                                               height: 30.h,
                                               decoration: BoxDecoration(
@@ -222,6 +258,29 @@ class local extends GetView<Controllers> {
                                                               [index]['src']
                                                           ['medium']
                                                       .toString(),
+                                                  placeholder: (context, url) {
+                                                    return Center(
+                                                      child: Container(
+                                                        height: 30.h,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          border: Border.all(
+                                                              color: theme
+                                                                  .neoncolor),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                        ),
+                                                        child: Center(
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            color:
+                                                                theme.neoncolor,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
                                                 ),
                                               ),
                                             ),
@@ -230,9 +289,41 @@ class local extends GetView<Controllers> {
                                       }
                                     });
                               } else {
-                                return Center(
-                                  child: CircularProgressIndicator(
-                                    color: theme.neoncolor,
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 4.w,
+                                    right: 4.w,
+                                  ),
+                                  child: AlignedGridView.count(
+                                    addAutomaticKeepAlives: false,
+                                    physics: const PageScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    primary: false,
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 12,
+                                    itemCount: 10,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                          height: 30.h,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          child: Shimmer.fromColors(
+                                            baseColor: HexColor("#C9F560"),
+                                            highlightColor: HexColor("#C9F560")
+                                                .withOpacity(0.5),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ));
+                                    },
                                   ),
                                 );
                               }
@@ -278,32 +369,70 @@ class local extends GetView<Controllers> {
             child: Text('Error'),
           );
         } else {
-          return CarouselSlider(
-            items: generateSlider(),
-            options: CarouselOptions(
-              height: 20.h,
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 3),
-              autoPlayAnimationDuration: const Duration(milliseconds: 800),
-              // autoPlayCurve: Curves.fastOutSlowIn,
-              // enlargeCenterPage: true,
-              aspectRatio: 2.0,
-              enlargeCenterPage: true,
-              scrollDirection: Axis.horizontal,
-              reverse: false,
-            ),
-          );
+          return Container();
         }
       },
     );
   }
 
-  List<Widget> generateSlider() {
+  List<Widget> generateSlider(var new_data) {
     List<Widget> list = [];
     for (var i = 0; i < 10; i++) {
       list.add(
-        WallpaperCard(controller: controller, i: i),
+        InkWell(
+          onTap: () async {
+            var isInitialized = await Appodeal.show(Appodeal.INTERSTITIAL);
+
+            if (isInitialized) {
+              Appodeal.show(Appodeal.INTERSTITIAL);
+            } else {
+              //print("not initialized");
+            }
+
+            Get.to(
+              () => ImageView(
+                id: new_data['photos'][i]['id'],
+                photographer: new_data['photos'][i]['photographer'].toString(),
+                photographer_url:
+                    new_data['photos'][i]['photographer_url'].toString(),
+                photographer_id: new_data['photos'][i]['photographer_id'],
+                large2x: new_data['photos'][i]['src']['portrait'].toString(),
+                large: new_data['photos'][i]['src']['portrait'].toString(),
+                width: new_data['photos'][i]['width'].toString(),
+                height: new_data['photos'][i]['height'].toString(),
+                avg_color: new_data['photos'][i]['avg_color'].toString(),
+              ),
+            );
+          },
+          child: CachedNetworkImage(
+            imageUrl: new_data['photos'][i]['src']['landscape'],
+            placeholder: (context, url) {
+              return Container(
+                height: 20.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: theme.neoncolor,
+                    )),
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: theme.neoncolor,
+                  ),
+                ),
+              );
+            },
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
+        ),
       );
     }
     return list;
