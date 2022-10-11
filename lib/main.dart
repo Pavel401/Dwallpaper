@@ -19,6 +19,8 @@ import 'package:wallpix/controllers/LandingPageController.dart';
 import 'package:wallpix/controllers/carosoleController.dart';
 import 'package:sizer/sizer.dart';
 
+import 'UI/Localcategorypage.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   initialization();
@@ -96,7 +98,7 @@ class MyAppView extends GetView<Controllers> {
                   index: landingPageController.tabIndex.value,
                   children: [
                     local(),
-                    Categoris(),
+                    Localcategorypage(),
                     //   ProfilePAge(),
                   ],
                 ),
