@@ -3,14 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_no_internet_widget/flutter_no_internet_widget.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
-import 'package:wallpix/UI/CategorisPage.dart';
-import 'package:wallpix/UI/Homepage.dart';
 import 'package:wallpix/UI/Local.dart';
 import 'package:wallpix/Utility/API.dart';
 import 'package:wallpix/Utility/Constants.dart';
@@ -28,9 +24,6 @@ void main() {
 }
 
 Future<void> initialization() async {
-  final prefs = await SharedPreferences.getInstance();
-  final List<String>? items = prefs.getStringList('items');
-
   Appodeal.initialize(
       appKey: APImanager.appodeal_key,
       adTypes: [
@@ -55,58 +48,75 @@ class MyAppView extends GetView<Controllers> {
   Widget build(BuildContext context) {
     // print("widget initialized");
     //Get.lazyPut(() => Controllers());
-    return Sizer(
-      builder: (BuildContext context, Orientation orientation,
-          DeviceType deviceType) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primaryColor: theme.primaryColor,
-
-            scaffoldBackgroundColor: theme.primaryColor,
-
-            //secondaryHeaderColor:
+    return InternetWidget(
+        offline: CustomNoInternetWidget(
+          color: theme.primaryColor,
+          imageWidget: Lottie.asset('assets/nointernet.json'),
+          textWidget: const Text(
+            "Connect to Internet Service",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 22.0,
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
           ),
-          home: Scaffold(
-            extendBody: true,
-            bottomNavigationBar: Obx(
-              () => CustomNavigationBar(
-                elevation: 10,
-                //isFloating: true,
-                iconSize: 30.0,
-                borderRadius: Radius.circular(5),
-                selectedColor: theme.neoncolor,
-                strokeColor: Color(0x30040307),
-                unSelectedColor: Colors.white,
-                backgroundColor: HexColor("#3D4552"),
-                items: [
-                  CustomNavigationBarItem(
-                    icon: const HeroIcon(HeroIcons.home),
-                  ),
-                  CustomNavigationBarItem(
-                    icon: const HeroIcon(HeroIcons.rectangleStack),
-                  ),
-                ],
-                currentIndex: landingPageController.tabIndex.value,
-                onTap: landingPageController.changeTabIndex,
+        ),
+        // ignore: avoid_print
+        whenOffline: () => print('No Internet'),
+        // ignore: avoid_print
+        whenOnline: () => print('Connected to internet'),
+        online: Sizer(
+          builder: (BuildContext context, Orientation orientation,
+              DeviceType deviceType) {
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                primaryColor: theme.primaryColor,
+
+                scaffoldBackgroundColor: theme.primaryColor,
+
+                //secondaryHeaderColor:
               ),
-            ),
-            body: SafeArea(
-              maintainBottomViewPadding: true,
-              child: Obx(
-                () => IndexedStack(
-                  index: landingPageController.tabIndex.value,
-                  children: [
-                    local(),
-                    Localcategorypage(),
-                    //   ProfilePAge(),
-                  ],
+              home: Scaffold(
+                extendBody: true,
+                bottomNavigationBar: Obx(
+                  () => CustomNavigationBar(
+                    elevation: 10,
+                    //isFloating: true,
+                    iconSize: 30.0,
+                    borderRadius: Radius.circular(5),
+                    selectedColor: theme.neoncolor,
+                    strokeColor: Color(0x30040307),
+                    unSelectedColor: Colors.white,
+                    backgroundColor: HexColor("#3D4552"),
+                    items: [
+                      CustomNavigationBarItem(
+                        icon: const HeroIcon(HeroIcons.home),
+                      ),
+                      CustomNavigationBarItem(
+                        icon: const HeroIcon(HeroIcons.rectangleStack),
+                      ),
+                    ],
+                    currentIndex: landingPageController.tabIndex.value,
+                    onTap: landingPageController.changeTabIndex,
+                  ),
+                ),
+                body: SafeArea(
+                  maintainBottomViewPadding: true,
+                  child: Obx(
+                    () => IndexedStack(
+                      index: landingPageController.tabIndex.value,
+                      children: [
+                        local(),
+                        Localcategorypage(),
+                        //   ProfilePAge(),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        );
-      },
-    );
+            );
+          },
+        ));
   }
 }

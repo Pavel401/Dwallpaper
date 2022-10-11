@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
+import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 
 import 'package:wallpix/UI/SetWallpaper.dart';
 import 'package:wallpix/controllers/CategorisController.dart';
@@ -90,6 +91,16 @@ class LocalCategoryViewPage extends GetView<CategorisWallpaperController> {
                                       } else {
                                         return InkWell(
                                           onTap: () async {
+                                            var isInitialized =
+                                                await Appodeal.show(
+                                                    Appodeal.INTERSTITIAL);
+
+                                            if (isInitialized) {
+                                              Appodeal.show(
+                                                  Appodeal.INTERSTITIAL);
+                                            } else {
+                                              //   print("not initialized");
+                                            }
                                             Get.to(
                                               () => ImageView(
                                                 id: new_data['photos'][index]

@@ -207,6 +207,16 @@ class local extends GetView<Controllers> {
                                       } else {
                                         return InkWell(
                                           onTap: () async {
+                                            var isInitialized =
+                                                await Appodeal.show(
+                                                    Appodeal.INTERSTITIAL);
+
+                                            if (isInitialized) {
+                                              Appodeal.show(
+                                                  Appodeal.INTERSTITIAL);
+                                            } else {
+                                              //   print("not initialized");
+                                            }
                                             Get.to(
                                               () => ImageView(
                                                 id: new_data['photos'][index]

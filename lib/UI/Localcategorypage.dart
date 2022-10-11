@@ -48,6 +48,13 @@ class Localcategorypage extends GetView<CategorisWallpaperController> {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () async {
+                var isInitialized = await Appodeal.show(Appodeal.INTERSTITIAL);
+
+                if (isInitialized) {
+                  Appodeal.show(Appodeal.INTERSTITIAL);
+                } else {
+                  //   print("not initialized");
+                }
                 Get.to(() => LocalCategoryViewPage(
                       catequery: title[index].toString(),
                     ));

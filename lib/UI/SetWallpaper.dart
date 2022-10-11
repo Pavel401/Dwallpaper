@@ -378,20 +378,11 @@ class ImageView extends StatelessWidget {
                   child: InkWell(
                     onTap: () async {
                       String result;
-// Platform messages may fail, so we use a try/catch PlatformException.
-                      try {
-                        var isInitialized =
-                            await Appodeal.show(Appodeal.REWARDED_VIDEO);
-
-                        if (isInitialized) {
-                          Appodeal.show(Appodeal.REWARDED_VIDEO);
-                        } else {
-                          //  print("not initialized");
-                        }
+                      set() async {
                         result = await AsyncWallpaper.setWallpaper(
                           url: this.large2x,
                           wallpaperLocation: AsyncWallpaper.HOME_SCREEN,
-                          goToHome: false,
+                          goToHome: true,
                         )
                             ? 'Wallpaper set'
                             : 'Failed to get wallpaper.';
@@ -402,6 +393,27 @@ class ImageView extends StatelessWidget {
                           icon: Icon(Icons.check, color: Colors.white),
                           snackPosition: SnackPosition.BOTTOM,
                         );
+                      }
+
+                      try {
+                        var isInitialized =
+                            await Appodeal.show(Appodeal.REWARDED_VIDEO);
+
+                        if (isInitialized) {
+                          Appodeal.setRewardedVideoCallbacks(
+                              onRewardedVideoLoaded: (isPrecache) => {},
+                              onRewardedVideoFailedToLoad: () => {set()},
+                              onRewardedVideoShown: () => {
+                                    set(),
+                                  },
+                              onRewardedVideoShowFailed: () => {set()},
+                              onRewardedVideoFinished: (amount, reward) => {},
+                              onRewardedVideoClosed: (isFinished) => {},
+                              onRewardedVideoExpired: () => {},
+                              onRewardedVideoClicked: () => {});
+                        } else {
+                          //  print("not initialized");
+                        }
                       } on PlatformException {
                         result = 'Failed to get wallpaper.';
                       }
@@ -435,30 +447,42 @@ class ImageView extends StatelessWidget {
                   child: InkWell(
                     onTap: () async {
                       String result;
-// Platform messages may fail, so we use a try/catch PlatformException.
+                      set() async {
+                        result = await AsyncWallpaper.setWallpaper(
+                          url: this.large2x,
+                          wallpaperLocation: AsyncWallpaper.LOCK_SCREEN,
+                          goToHome: true,
+                        )
+                            ? 'Lockscreen set'
+                            : 'Failed to get wallpaper.';
+
+                        Get.snackbar(
+                          "Lockscreen Updated",
+                          "",
+                          icon: Icon(Icons.check, color: Colors.white),
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      }
+
                       try {
                         var isInitialized =
                             await Appodeal.show(Appodeal.REWARDED_VIDEO);
 
                         if (isInitialized) {
-                          Appodeal.show(Appodeal.REWARDED_VIDEO);
+                          Appodeal.setRewardedVideoCallbacks(
+                              onRewardedVideoLoaded: (isPrecache) => {},
+                              onRewardedVideoFailedToLoad: () => {set()},
+                              onRewardedVideoShown: () => {
+                                    set(),
+                                  },
+                              onRewardedVideoShowFailed: () => {set()},
+                              onRewardedVideoFinished: (amount, reward) => {},
+                              onRewardedVideoClosed: (isFinished) => {},
+                              onRewardedVideoExpired: () => {},
+                              onRewardedVideoClicked: () => {});
                         } else {
                           //  print("not initialized");
                         }
-                        result = await AsyncWallpaper.setWallpaper(
-                          url: this.large2x,
-                          wallpaperLocation: AsyncWallpaper.LOCK_SCREEN,
-                          goToHome: false,
-                        )
-                            ? 'Wallpaper set'
-                            : 'Failed to get wallpaper.';
-
-                        Get.snackbar(
-                          "Wallpaper Updated",
-                          "",
-                          icon: Icon(Icons.check, color: Colors.white),
-                          snackPosition: SnackPosition.BOTTOM,
-                        );
                       } on PlatformException {
                         result = 'Failed to get wallpaper.';
                       }
@@ -492,30 +516,42 @@ class ImageView extends StatelessWidget {
                   child: InkWell(
                     onTap: () async {
                       String result;
-// Platform messages may fail, so we use a try/catch PlatformException.
+                      set() async {
+                        result = await AsyncWallpaper.setWallpaper(
+                          url: this.large2x,
+                          wallpaperLocation: AsyncWallpaper.BOTH_SCREENS,
+                          goToHome: true,
+                        )
+                            ? 'Wallpaper and Lockscreen set'
+                            : 'Failed to get wallpaper.';
+
+                        Get.snackbar(
+                          "Wallpaper and Lockscreen Updated",
+                          "",
+                          icon: Icon(Icons.check, color: Colors.white),
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      }
+
                       try {
                         var isInitialized =
                             await Appodeal.show(Appodeal.REWARDED_VIDEO);
 
                         if (isInitialized) {
-                          Appodeal.show(Appodeal.REWARDED_VIDEO);
+                          Appodeal.setRewardedVideoCallbacks(
+                              onRewardedVideoLoaded: (isPrecache) => {},
+                              onRewardedVideoFailedToLoad: () => {set()},
+                              onRewardedVideoShown: () => {
+                                    set(),
+                                  },
+                              onRewardedVideoShowFailed: () => {set()},
+                              onRewardedVideoFinished: (amount, reward) => {},
+                              onRewardedVideoClosed: (isFinished) => {},
+                              onRewardedVideoExpired: () => {},
+                              onRewardedVideoClicked: () => {});
                         } else {
                           //  print("not initialized");
                         }
-                        result = await AsyncWallpaper.setWallpaper(
-                          url: this.large2x,
-                          wallpaperLocation: AsyncWallpaper.BOTH_SCREENS,
-                          goToHome: false,
-                        )
-                            ? 'Wallpaper set'
-                            : 'Failed to get wallpaper.';
-
-                        Get.snackbar(
-                          "Wallpaper Updated",
-                          "",
-                          icon: Icon(Icons.check, color: Colors.white),
-                          snackPosition: SnackPosition.TOP,
-                        );
                       } on PlatformException {
                         result = 'Failed to get wallpaper.';
                       }

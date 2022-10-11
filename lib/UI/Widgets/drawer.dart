@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wallpix/Utility/Constants.dart';
 
@@ -25,27 +27,49 @@ class sidebar extends StatelessWidget {
                 Container(
                   height: 20.h,
                   width: 100.w,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/header.png'),
-                      fit: BoxFit.cover,
+                  decoration: BoxDecoration(color: Colors.black12),
+                ),
+                Positioned(
+                  top: 5.h,
+                  left: 4.w,
+                  child: Container(
+                    child: Center(
+                      child: Row(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Hi !",
+                                style: GoogleFonts.poppins(
+                                  color: theme.neoncolor,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                "There",
+                                style: GoogleFonts.poppins(
+                                  color: theme.neoncolor,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 10.h,
-                  left: 25.w,
-                  right: 25.w,
+                  top: 0,
+                  right: 0,
                   child: Container(
-                    height: 10.h,
-                    width: 10.h,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('assets/icons/avatar.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    height: 20.h,
+                    child: Lottie.network(
+                        "https://assets6.lottiefiles.com/packages/lf20_3vbOcw.json"),
                   ),
                 ),
               ],
