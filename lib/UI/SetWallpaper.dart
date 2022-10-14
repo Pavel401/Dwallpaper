@@ -12,6 +12,7 @@ import 'package:sizer/sizer.dart';
 import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/Utility/Constants.dart';
 import '../controllers/ProgressIndicator.dart';
+import 'package:wallpix/Utility/Constants.dart';
 
 class ImageView extends StatelessWidget {
   final int id;
@@ -97,7 +98,7 @@ class ImageView extends StatelessWidget {
         transitionOnUserGestures: true,
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: CachedNetworkImage(
@@ -355,7 +356,7 @@ class ImageView extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: 3.w, right: 3.w),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
@@ -382,16 +383,18 @@ class ImageView extends StatelessWidget {
                         result = await AsyncWallpaper.setWallpaper(
                           url: this.large2x,
                           wallpaperLocation: AsyncWallpaper.HOME_SCREEN,
-                          goToHome: true,
+                          goToHome: false,
                         )
                             ? 'Wallpaper set'
                             : 'Failed to get wallpaper.';
 
                         Get.snackbar(
-                          "Wallpaper Updated",
+                          "HomeScreen Wallpaper is updated",
                           "",
-                          icon: Icon(Icons.check, color: Colors.white),
-                          snackPosition: SnackPosition.BOTTOM,
+                          icon: const Icon(Icons.photo, color: Colors.white),
+                          colorText: theme.neoncolor,
+                          snackPosition: SnackPosition.TOP,
+                          backgroundColor: theme.primaryColor,
                         );
                       }
 
@@ -408,11 +411,22 @@ class ImageView extends StatelessWidget {
                                   },
                               onRewardedVideoShowFailed: () => {set()},
                               onRewardedVideoFinished: (amount, reward) => {},
-                              onRewardedVideoClosed: (isFinished) => {},
+                              onRewardedVideoClosed: (isFinished) => {
+                                    Get.snackbar(
+                                      "HomeScreen Wallpaper is updated",
+                                      "",
+                                      icon: const Icon(Icons.photo,
+                                          color: Colors.white),
+                                      colorText: theme.neoncolor,
+                                      snackPosition: SnackPosition.TOP,
+                                      backgroundColor: theme.primaryColor,
+                                    ),
+                                  },
                               onRewardedVideoExpired: () => {},
                               onRewardedVideoClicked: () => {});
                         } else {
                           //  print("not initialized");
+                          set();
                         }
                       } on PlatformException {
                         result = 'Failed to get wallpaper.';
@@ -451,16 +465,18 @@ class ImageView extends StatelessWidget {
                         result = await AsyncWallpaper.setWallpaper(
                           url: this.large2x,
                           wallpaperLocation: AsyncWallpaper.LOCK_SCREEN,
-                          goToHome: true,
+                          goToHome: false,
                         )
                             ? 'Lockscreen set'
                             : 'Failed to get wallpaper.';
 
                         Get.snackbar(
-                          "Lockscreen Updated",
+                          "LockScreen Wallpaper is updated",
                           "",
-                          icon: Icon(Icons.check, color: Colors.white),
-                          snackPosition: SnackPosition.BOTTOM,
+                          icon: const Icon(Icons.photo, color: Colors.white),
+                          colorText: theme.neoncolor,
+                          snackPosition: SnackPosition.TOP,
+                          backgroundColor: theme.primaryColor,
                         );
                       }
 
@@ -477,11 +493,22 @@ class ImageView extends StatelessWidget {
                                   },
                               onRewardedVideoShowFailed: () => {set()},
                               onRewardedVideoFinished: (amount, reward) => {},
-                              onRewardedVideoClosed: (isFinished) => {},
+                              onRewardedVideoClosed: (isFinished) => {
+                                    Get.snackbar(
+                                      "LockScreen Wallpaper is updated",
+                                      "",
+                                      icon: const Icon(Icons.photo,
+                                          color: Colors.white),
+                                      colorText: theme.neoncolor,
+                                      snackPosition: SnackPosition.TOP,
+                                      backgroundColor: theme.primaryColor,
+                                    ),
+                                  },
                               onRewardedVideoExpired: () => {},
                               onRewardedVideoClicked: () => {});
                         } else {
                           //  print("not initialized");
+                          set();
                         }
                       } on PlatformException {
                         result = 'Failed to get wallpaper.';
@@ -516,20 +543,23 @@ class ImageView extends StatelessWidget {
                   child: InkWell(
                     onTap: () async {
                       String result;
+
                       set() async {
                         result = await AsyncWallpaper.setWallpaper(
                           url: this.large2x,
                           wallpaperLocation: AsyncWallpaper.BOTH_SCREENS,
-                          goToHome: true,
+                          goToHome: false,
                         )
                             ? 'Wallpaper and Lockscreen set'
                             : 'Failed to get wallpaper.';
 
                         Get.snackbar(
-                          "Wallpaper and Lockscreen Updated",
+                          "Both Wallpaper is updated",
                           "",
-                          icon: Icon(Icons.check, color: Colors.white),
-                          snackPosition: SnackPosition.BOTTOM,
+                          icon: const Icon(Icons.photo, color: Colors.white),
+                          colorText: theme.neoncolor,
+                          snackPosition: SnackPosition.TOP,
+                          backgroundColor: theme.primaryColor,
                         );
                       }
 
@@ -546,11 +576,22 @@ class ImageView extends StatelessWidget {
                                   },
                               onRewardedVideoShowFailed: () => {set()},
                               onRewardedVideoFinished: (amount, reward) => {},
-                              onRewardedVideoClosed: (isFinished) => {},
+                              onRewardedVideoClosed: (isFinished) => {
+                                    Get.snackbar(
+                                      "Both Wallpaper is updated",
+                                      "",
+                                      icon: const Icon(Icons.photo,
+                                          color: Colors.white),
+                                      colorText: theme.neoncolor,
+                                      snackPosition: SnackPosition.TOP,
+                                      backgroundColor: theme.primaryColor,
+                                    ),
+                                  },
                               onRewardedVideoExpired: () => {},
                               onRewardedVideoClicked: () => {});
                         } else {
                           //  print("not initialized");
+                          set();
                         }
                       } on PlatformException {
                         result = 'Failed to get wallpaper.';

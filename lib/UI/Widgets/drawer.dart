@@ -30,46 +30,12 @@ class sidebar extends StatelessWidget {
                   decoration: BoxDecoration(color: Colors.black12),
                 ),
                 Positioned(
-                  top: 5.h,
-                  left: 4.w,
-                  child: Container(
-                    child: Center(
-                      child: Row(
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Hi !",
-                                style: GoogleFonts.poppins(
-                                  color: theme.neoncolor,
-                                  fontSize: 22.sp,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                "There",
-                                style: GoogleFonts.poppins(
-                                  color: theme.neoncolor,
-                                  fontSize: 22.sp,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
                   top: 0,
                   right: 0,
+                  left: 0,
                   child: Container(
-                    height: 20.h,
-                    child: Lottie.network(
-                        "https://assets6.lottiefiles.com/packages/lf20_3vbOcw.json"),
+                    height: 22.h,
+                    child: Lottie.asset("assets/hello.json"),
                   ),
                 ),
               ],

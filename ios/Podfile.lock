@@ -129,8 +129,6 @@ PODS:
   - myTargetSDK (5.15.2):
     - myTrackerSDK (~> 3.0.3)
   - myTrackerSDK (3.0.7)
-  - network_info_plus (0.0.1):
-    - Flutter
   - OMSDK_Appodeal (1.3.27)
   - OneKit-Pangle/BaseKit (1.1.21-pangle)
   - OneKit-Pangle/Database (1.1.21-pangle):
@@ -318,7 +316,6 @@ DEPENDENCIES:
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - hexcolor (from `.symlinks/plugins/hexcolor/ios`)
   - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
-  - network_info_plus (from `.symlinks/plugins/network_info_plus/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -388,8 +385,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/hexcolor/ios"
   image_gallery_saver:
     :path: ".symlinks/plugins/image_gallery_saver/ios"
-  network_info_plus:
-    :path: ".symlinks/plugins/network_info_plus/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
   permission_handler_apple:
@@ -439,7 +434,6 @@ SPEC CHECKSUMS:
   IronSourceSDK: 2c5aa482ea7c5e85ff934d2c8bb34fe3ceb54f43
   myTargetSDK: e79ecceb7ce283f274202ff8e8b64b854ac8edad
   myTrackerSDK: 3b21ddcc191b818d0f39a518413ff98bf6544c76
-  network_info_plus: b78876159360f5580608c2cea620d6ceffabd0ad
   OMSDK_Appodeal: f0d5df63dd9a2cadf30b3e0a4f5bfd498375baa3
   OneKit-Pangle: 68a778c39d36ed8feffd667a6b49225427bcf286
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02

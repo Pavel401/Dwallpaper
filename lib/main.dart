@@ -31,9 +31,9 @@ Future<void> initialization() async {
         AppodealAdType.Interstitial,
       ],
       onInitializationFinished: (errors) {
-        errors?.forEach((error) => {});
+        print('Appodeal initialization error:  $errors}');
       });
-  Appodeal.setTesting(kReleaseMode ? false : true);
+  Appodeal.setTesting(false);
   Appodeal.setLogLevel(Appodeal.LogLevelVerbose);
   Appodeal.setAutoCache(Appodeal.INTERSTITIAL, true);
   Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, true);
@@ -49,6 +49,18 @@ class MyAppView extends GetView<Controllers> {
     // print("widget initialized");
     //Get.lazyPut(() => Controllers());
     return InternetWidget(
+        loadingWidget: CustomNoInternetWidget(
+          color: theme.primaryColor,
+          imageWidget: Lottie.asset('assets/wallpaper.json'),
+          textWidget: const Text(
+            "Wallpapers are loading",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 22.0,
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
         offline: CustomNoInternetWidget(
           color: theme.primaryColor,
           imageWidget: Lottie.asset('assets/nointernet.json'),
@@ -84,9 +96,9 @@ class MyAppView extends GetView<Controllers> {
                     elevation: 10,
                     //isFloating: true,
                     iconSize: 30.0,
-                    borderRadius: Radius.circular(5),
+                    borderRadius: const Radius.circular(5),
                     selectedColor: theme.neoncolor,
-                    strokeColor: Color(0x30040307),
+                    strokeColor: const Color(0x30040307),
                     unSelectedColor: Colors.white,
                     backgroundColor: HexColor("#3D4552"),
                     items: [

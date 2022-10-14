@@ -4,14 +4,17 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
 import 'package:wallpix/UI/Widgets/SearchBar.dart';
 import 'package:wallpix/controllers/SearchController.dart';
 import 'package:wallpix/controllers/SearchedWallpaperComtroller.dart';
+import '../Utility/illustrations.dart';
 import 'SetWallpaper.dart';
 import 'package:get/get.dart';
+import 'package:wallpix/Utility/Constants.dart';
 
 class SearchPage extends GetView<SearchedWallpaperController> {
   SearchPage({super.key});
@@ -35,10 +38,17 @@ class SearchPage extends GetView<SearchedWallpaperController> {
                     onTap: () {
                       Get.back();
                     },
-                    child: HeroIcon(
-                      HeroIcons.chevronLeft,
-                      size: 20.sp,
-                    ),
+                    child: Container(
+                        margin: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: theme.neoncolor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const HeroIcon(
+                          HeroIcons.chevronLeft,
+                          color: Colors.black,
+                          size: 30,
+                        )),
                   ),
                   SizedBox(
                     width: 2.w,
@@ -118,12 +128,31 @@ class SearchPage extends GetView<SearchedWallpaperController> {
             ),
           );
         } else if (controller.isWallpaperDataError.value) {
-          return const Center(
-            child: Text('Error'),
+          return CustomNoInternetWidget(
+            color: theme.primaryColor,
+            imageWidget: Lottie.asset("assets/tryagain.json"),
+            textWidget: const Text(
+              "Server is busy, please try again later",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 22.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
           );
         } else if (controller.isWallpaperDataError.value) {
-          return const Center(
-            child: Text('Error'),
+          return CustomNoInternetWidget(
+            color: theme.primaryColor,
+            imageWidget: Lottie.network(
+                "https://assets7.lottiefiles.com/packages/lf20_ge2cws3x.json"),
+            textWidget: const Text(
+              "Server is busy, please try again later",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 22.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
           );
         } else {
           // print(controller.carosoleItems);
