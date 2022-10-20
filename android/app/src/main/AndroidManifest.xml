@@ -4,7 +4,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
         android:requestLegacyExternalStorage="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:label="IMI Walls"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">   
@@ -34,5 +33,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4148902242800603~7155388216"/>    
+            android:networkSecurityConfig="@xml/network_security_config"
     </application>
 </manifest>

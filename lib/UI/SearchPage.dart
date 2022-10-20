@@ -24,6 +24,7 @@ class SearchPage extends GetView<SearchedWallpaperController> {
     Get.lazyPut(() => SearchedWallpaperController());
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: EdgeInsets.only(left: 2.w, right: 2.w, top: 6.h, bottom: 2.h),
         child: CustomScrollView(

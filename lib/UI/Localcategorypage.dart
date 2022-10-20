@@ -31,7 +31,7 @@ class Localcategorypage extends GetView<CategorisWallpaperController> {
     "Shapes",
     "Nature",
     "Fluid",
-    "Quotes",
+    "River",
     "Gradient"
   ];
 
