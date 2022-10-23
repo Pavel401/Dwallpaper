@@ -86,5 +86,6 @@ dependencies {
         exclude group: 'com.appodeal.ads.sdk.services', module: 'facebook_analytics'
     }
     implementation 'com.google.android.gms:play-services-ads:21.3.0'
+    implementation 'com.appodeal.ads.sdk.services:facebook_analytics:3.0.0.+'
 
 }
