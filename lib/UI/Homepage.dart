@@ -47,7 +47,7 @@ class HomePage extends GetView<Controllers> {
                 child: Image.asset("assets/icons/hamburger.png")),
           ),
           title: Text(
-            "IMI Walls",
+            "Dwallpaper",
             style: GoogleFonts.nunito(
                 //   color: Color.fromRGBO(65, 84, 252, 0.44),
                 fontSize: 26,
