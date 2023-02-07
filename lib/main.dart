@@ -34,7 +34,7 @@ Future<void> initialization() async {
         print('Appodeal initialization error:  $errors}');
       });
   Appodeal.setTesting(false);
-  Appodeal.setLogLevel(Appodeal.LogLevelVerbose);
+  Appodeal.setLogLevel(Appodeal.LogLevelNone);
   Appodeal.setAutoCache(Appodeal.INTERSTITIAL, true);
   Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, true);
   Appodeal.setUseSafeArea(true);
@@ -43,7 +43,7 @@ Future<void> initialization() async {
 class MyAppView extends GetView<Controllers> {
   final LandingPageController landingPageController =
       Get.put(LandingPageController(), permanent: false);
-
+// export PATH="$PATH:/Users/pavel_alam/Documents/flutter/bin"
   @override
   Widget build(BuildContext context) {
     // print("widget initialized");

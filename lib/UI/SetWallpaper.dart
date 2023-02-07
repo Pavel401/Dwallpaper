@@ -40,12 +40,15 @@ class ImageView extends StatelessWidget {
     if (Platform.isIOS) {
       /*Map<PermissionGroup, PermissionStatus> permissions =
           */
+      await Permission.photos.request();
 
       var status = await Permission.photos.status;
       if (status.isGranted) {
         c.save(this.large2x, this.id);
         // print("Permission is granted");
       } else if (status.isDenied) {
+        print("laora");
+
         if (await Permission.photos.request().isGranted) {
           c.save(this.large2x, this.id);
 
@@ -55,8 +58,12 @@ class ImageView extends StatelessWidget {
       }
     } else {
       // print("andrpoid");
+      await Permission.photos.request();
+
       var status = await Permission.photos.status;
       if (status.isGranted) {
+        // print("laora2");
+
         c.save(this.large2x, this.id);
         // print("Permission is granted");
       } else if (status.isDenied) {
@@ -84,7 +91,7 @@ class ImageView extends StatelessWidget {
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
         ),
         leading: IconButton(
-          icon: HeroIcon(
+          icon: const HeroIcon(
             HeroIcons.chevronLeft,
             color: Colors.white,
           ),
@@ -260,6 +267,7 @@ class ImageView extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () async {
+                        print("hello");
                         _askPermission();
                         var isInitialized =
                             await Appodeal.show(Appodeal.REWARDED_VIDEO);

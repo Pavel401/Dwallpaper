@@ -14,7 +14,7 @@ import 'package:wallpix/Utility/Constants.dart';
 class indicator extends GetxController {
   var progressIndicator = 0.obs;
   save(String url, int id) async {
-    Random random = new Random();
+    Random random = Random();
     openDialog();
     var response = await Dio().get(
       url,
